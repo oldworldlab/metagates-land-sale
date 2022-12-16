@@ -50,7 +50,7 @@ function App() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center min-h-screen text-white">
+    <div className="flex items-center justify-center min-h-screen text-white p-12 mt-4">
       <DiamondProvider
         chainId={Number(chainId)}
         contractAddress={contractAddress}
@@ -70,9 +70,6 @@ function App() {
             {/* Sales Title */}
             <div className="flex flex-col gap-4 items-center justify-between">
               <h2 className="font-bold text-2xl">Choose your land type</h2>
-              <IfWalletConnected>
-                <WalletDropdown />
-              </IfWalletConnected>
             </div>
 
             {/* Tier Selector */}
@@ -80,6 +77,10 @@ function App() {
               {/* <ERC721TieredSalesSelector /> */}
               <LandTierSelector />
             </div>
+
+            <IfWalletConnected>
+              <WalletDropdown />
+            </IfWalletConnected>
 
             <div className="rounded-lg p-6 bg-gray-100/10 w-full max-w-[500px]">
               <main className="flex flex-col gap-y-8">
