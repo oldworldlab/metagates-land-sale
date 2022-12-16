@@ -24,12 +24,13 @@ function LandTierSelector() {
       title={false}
       // Don't wrap tier elements with a parent element:
       wrapper={true}
-      wrapperClassName="flex items-center justify-center gap-4 pb-6 overflow-x-scroll scroll-visible w-[100vw]"
+      wrapperClassName="flex flex-wrap items-center justify-center gap-4 pb-6 overflow-x-scroll scroll-visible w-[100vw]"
       // Show a simple loading element:
       loadingElement={
-        <div className="flex items-center gap-2">
-          <Spinner className="w-4 h-4" />
-          <span>Loading all the goodies...</span>
+        <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4">
+          <div className="bg-gray-200 duration-300 animate-pulse h-48 w-48 rounded-lg"></div>
+          <div className="bg-gray-200 duration-300 animate-pulse h-48 w-48 rounded-lg"></div>
+          <div className="bg-gray-200 duration-300 animate-pulse h-48 w-48 rounded-lg"></div>
         </div>
       }
       // Customize each tier element:
@@ -53,7 +54,9 @@ function LandTierSelector() {
             {tokenMetadataLoading ? (
               "Loading..."
             ) : tokenMetadata?.image ? (
-              <Media uri={tokenMetadata.image} />
+              <Media uri={tokenMetadata.image} preferManagedGateway={true} loadingMask={
+                <div className="bg-gray-200 duration-300 animate-pulse h-48 w-full rounded-lg"></div>
+              } />
             ) : (
               <i>No image</i>
             )}
@@ -84,7 +87,7 @@ function LandTierSelector() {
               <CryptoValue
                 symbol={currencySymbol}
                 value={tierConfig.price?.toString()}
-                unit={CryptoUnits.WEI}
+                formatted={false}
                 showPrice={false}
                 showSymbol={true}
               />
