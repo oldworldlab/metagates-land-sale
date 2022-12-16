@@ -69,7 +69,7 @@ function App() {
           <main className="h-fit w-full max-w-2xl min-w-xl mx-auto lg:max-w-5xl flex flex-col gap-8 items-center p-4">
             {/* Sales Title */}
             <div className="flex flex-col gap-4 items-center justify-between">
-              <h2 className="font-bold text-2xl">Choose your land type</h2>
+              <h2 className="font-bold text-2xl">Choose your housing type</h2>
               <IfWalletConnected>
                 <WalletDropdown />
               </IfWalletConnected>
