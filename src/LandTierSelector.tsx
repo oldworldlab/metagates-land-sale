@@ -9,6 +9,7 @@ import {
   TieredSalesMaxAllocation,
   Spinner,
   classNames,
+  useDiamondContext,
 } from "@flair-sdk/react";
 
 function LandTierSelector() {
