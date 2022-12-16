@@ -24,11 +24,15 @@ import {
   classNames,
   SECONDARY_BUTTON,
   useWalletContext,
+  TieredSalesSuccessDialog,
 } from "@flair-sdk/react";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { useAccount } from "wagmi";
 import LandTierSelector from "./LandTierSelector";
+import { SendTransactionResult } from "@wagmi/core";
+import { BigNumberish } from "ethers";
+import { TransactionReceipt } from "@ethersproject/providers";
 
 const chainId = Number(process.env.REACT_APP_CONTRACT_CHAIN_ID);
 const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS as `0x${string}`;
@@ -40,6 +44,30 @@ function App() {
     "w-full bg-indigo-700 border border-transparent py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed";
 
   const { setPreferredChainId, setAllowedNetworks } = useWalletContext();
+
+  const [successDialogOpen, setSuccessDialogOpen] = useState(false);
+  const [successDialogMintCount, setSuccessDialogMintCount] =
+    useState<BigNumberish>();
+  const [successDialogTxResponse, setSuccessDialogTxResponse] =
+    useState<SendTransactionResult>();
+  const [successDialogTxReceipt, setSuccessDialogTxReceipt] =
+    useState<TransactionReceipt>();
+
+  const onMintSuccess = useCallback(
+    (args: {
+      currentTierId: BigNumberish;
+      totalAmount: BigNumberish;
+      mintCount: BigNumberish;
+      txReceipt?: TransactionReceipt | undefined;
+      txResponse?: SendTransactionResult | undefined;
+    }) => {
+      setSuccessDialogMintCount(args.mintCount);
+      setSuccessDialogTxResponse(args.txResponse);
+      setSuccessDialogTxReceipt(args.txReceipt);
+      setSuccessDialogOpen(true);
+    },
+    []
+  );
 
   useEffect(() => {
     setPreferredChainId(Number(chainId));
@@ -55,16 +83,17 @@ function App() {
         chainId={Number(chainId)}
         contractAddress={contractAddress}
       >
+        <TieredSalesSuccessDialog
+          mintCount={successDialogMintCount}
+          txResponse={successDialogTxResponse}
+          txReceipt={successDialogTxReceipt}
+          open={successDialogOpen}
+          setOpen={setSuccessDialogOpen}
+        />
         <TieredSalesProvider
           chainId={Number(chainId)}
           contractAddress={contractAddress}
-          onMintSuccess={({ mintCount, txReceipt }) => {
-            alert(
-              `Yaaay! You minted ${mintCount.toString()} NFT! \n Tx Hash: ${
-                txReceipt?.transactionHash
-              }`
-            );
-          }}
+          onMintSuccess={onMintSuccess}
         >
           <main className="h-fit w-full max-w-2xl min-w-xl mx-auto lg:max-w-5xl flex flex-col gap-8 items-center p-4">
             {/* Sales Title */}

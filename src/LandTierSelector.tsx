@@ -41,8 +41,8 @@ function LandTierSelector() {
         currencySymbol,
         tierConfig,
         tierId,
-        tokenMetadata,
-        tokenMetadataLoading,
+        tierMetadata,
+        tierMetadataLoading,
       }) => (
         <div
           className={classNames(
@@ -51,10 +51,10 @@ function LandTierSelector() {
           )}
         >
           <div className="">
-            {tokenMetadataLoading ? (
+            {tierMetadataLoading ? (
               "Loading..."
-            ) : tokenMetadata?.image ? (
-              <Media uri={tokenMetadata.image} preferManagedGateway={true} loadingMask={
+            ) : tierMetadata?.image ? (
+              <Media uri={tierMetadata.image} preferManagedGateway={true} loadingMask={
                 <div className="bg-gray-200 duration-300 animate-pulse h-48 w-full rounded-lg"></div>
               } />
             ) : (
@@ -79,7 +79,7 @@ function LandTierSelector() {
           </div> */}
 
           <div className="mt-2 text-sm">
-            <b>{tokenMetadata?.name || "No title set"}</b>
+            <b>{tierMetadata?.name || "No title set"}</b>
           </div>
 
           <div>
