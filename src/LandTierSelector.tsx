@@ -40,6 +40,7 @@ function LandTierSelector() {
         active,
         checked,
         currencySymbol,
+        currencyDecimals,
         tierConfig,
         tierId,
         tierMetadata,
@@ -89,6 +90,7 @@ function LandTierSelector() {
                 symbol={currencySymbol}
                 value={tierConfig.price?.toString()}
                 formatted={false}
+                decimals={currencyDecimals}
                 showPrice={false}
                 showSymbol={true}
               />

@@ -78,7 +78,7 @@ function App() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center min-h-screen text-white p-12 mt-4">
+    <div className="flex items-center justify-center min-h-screen text-white p-12 mt-12">
       <DiamondProvider
         chainId={Number(chainId)}
         contractAddress={contractAddress}
