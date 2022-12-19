@@ -198,7 +198,7 @@ function App() {
                                   "flex flex-1 flex-col justify-center items-center gap-2"
                                 )}
                                 method="utrust,bitpay,coinbase"
-                                alwaysShow={true}
+                                alwaysShow={false}
                               />
                             </div>
                           </SwitchChainButton>
