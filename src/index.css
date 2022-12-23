@@ -27,3 +27,7 @@
 .ReactModal__Content {
   padding-top: 5em;
 }
+
+span.wallet-label.hidden {
+  display: inline-block !important;
+}
