@@ -38,7 +38,8 @@
   },
   "scripts": {
     "start": "GENERATE_SOURCEMAP=true react-app-rewired start",
-    "build": "GENERATE_SOURCEMAP=true react-app-rewired build",
+    "build": "GENERATE_SOURCEMAP=true react-app-rewired build && npm run update-entrypoints",
+    "update-entrypoints": "node ./scripts/add-chunks-to-entrypoints.js",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
@@ -61,6 +62,8 @@
     ]
   },
   "devDependencies": {
-    "react-app-rewired": "^2.2.1"
+    "react-app-rewired": "^2.2.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack-cli": "^5.0.1"
   }
 }
