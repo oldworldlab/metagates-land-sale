@@ -48,7 +48,7 @@ function LandTierSelector() {
       }) => (
         <div
           className={classNames(
-            "cursor-pointer w-80 text-center rounded-lg border border-4 p-2 list-outside w-[200px] hover:bg-gray-100/10",
+            "cursor-pointer bg-gray-100/30 w-80 text-center rounded-lg border border-4 p-2 list-outside w-[200px] hover:bg-gray-100/10",
             checked ? "border-gray-200" : "border-gray-900"
           )}
         >

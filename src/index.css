@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 #root {
-  background-color: #0b121a;
+  background-color: transparent !important;
 }
 
 .scroll-visible::-webkit-scrollbar {
