@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 #root {
-  background-color: #0b121a;
+  background-color: transparent !important;
 }
 
 .scroll-visible::-webkit-scrollbar {
@@ -22,4 +22,12 @@
   border-radius: 8px;
   border: 2px solid white; /* should match background, can't be transparent */
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ReactModal__Content {
+  padding-top: 5em;
+}
+
+span.wallet-label.hidden {
+  display: inline-block !important;
 }

@@ -9,6 +9,7 @@ import {
   TieredSalesMaxAllocation,
   Spinner,
   classNames,
+  useDiamondContext,
 } from "@flair-sdk/react";
 
 function LandTierSelector() {
@@ -39,22 +40,23 @@ function LandTierSelector() {
         active,
         checked,
         currencySymbol,
+        currencyDecimals,
         tierConfig,
         tierId,
-        tokenMetadata,
-        tokenMetadataLoading,
+        tierMetadata,
+        tierMetadataLoading,
       }) => (
         <div
           className={classNames(
-            "cursor-pointer w-80 text-center rounded-lg border border-4 p-2 list-outside w-[200px] hover:bg-gray-100/10",
+            "cursor-pointer bg-gray-100/30 w-80 text-center rounded-lg border border-4 p-2 list-outside w-[200px] hover:bg-gray-100/10",
             checked ? "border-gray-200" : "border-gray-900"
           )}
         >
           <div className="">
-            {tokenMetadataLoading ? (
+            {tierMetadataLoading ? (
               "Loading..."
-            ) : tokenMetadata?.image ? (
-              <Media uri={tokenMetadata.image} preferManagedGateway={true} loadingMask={
+            ) : tierMetadata?.image ? (
+              <Media uri={tierMetadata.image} preferManagedGateway={true} loadingMask={
                 <div className="bg-gray-200 duration-300 animate-pulse h-48 w-full rounded-lg"></div>
               } />
             ) : (
@@ -79,7 +81,7 @@ function LandTierSelector() {
           </div> */}
 
           <div className="mt-2 text-sm">
-            <b>{tokenMetadata?.name || "No title set"}</b>
+            <b>{tierMetadata?.name || "No title set"}</b>
           </div>
 
           <div>
@@ -88,6 +90,7 @@ function LandTierSelector() {
                 symbol={currencySymbol}
                 value={tierConfig.price?.toString()}
                 formatted={false}
+                decimals={currencyDecimals}
                 showPrice={false}
                 showSymbol={true}
               />
